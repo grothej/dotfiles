@@ -1,0 +1,9 @@
+.DS_Store
+config/nvim/sessions
+*.swp
+foo.*
+*.session
+*.log
+.idea/
+.vscode/
+.directory/
