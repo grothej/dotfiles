@@ -1,0 +1,9 @@
+# Look
+theme = catppuccin-mocha
+mouse-hide-while-typing = true
+font-size = 14
+font-family = "SauceCodePro Nerd Font Mono"
+
+macos-option-as-alt = true
+
+maximize = true
