@@ -77,12 +77,34 @@ vim.opt.visualbell = true
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)
 
-vim.keymap.set('', '<C-n>', ':cnext<CR>')
-vim.keymap.set('', '<C-p>', ':cprevious<CR>')
-vim.keymap.set('', '<leader>c', ':cclose<CR>')
+-- Diagnostic keymaps
+-- open loclist with diagnostics and jump to first entry in list
+-- then focus on the initial window insead of the loclist window
+vim.keymap.set('n', '<leader>q', function()
+  vim.diagnostic.setloclist()
+  vim.cmd 'wincmd p'
+
+  local loclist = vim.fn.getloclist(0)
+  if #loclist > 0 then
+    vim.cmd 'll 1'
+  end
+end, { desc = 'Open diagnostic [Q]uickfix list and return focus' })
+
+vim.keymap.set('n', '<leader>c', ':lclose<CR>')
+vim.keymap.set('n', '<C-n>', ':lnext<CR>')
+vim.keymap.set('n', '<C-p>', ':lprevious<CR>')
+
+-- vim.keymap.set('', '<C-n>', ':cnext<CR>')
+-- vim.keymap.set('', '<C-p>', ':cprevious<CR>')
+-- vim.keymap.set('', '<leader>c', ':cclose<CR>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -626,6 +648,8 @@ require('lazy').setup({
     opts = {
       disable_netrw = true,
       hijack_cursor = true,
+      sync_root_with_cwd = true,
+      respect_buf_cwd = true,
       update_focused_file = {
         enable = true,
         update_root = {
@@ -641,6 +665,36 @@ require('lazy').setup({
     },
   },
   { 'tpope/vim-fugitive' },
+  {
+    'coffebar/neovim-project',
+    opts = {
+      projects = {
+        '~/projects/*',
+        '~/IdeaProjects/tc_code/*',
+        '~/IdeaProjects/tc_code/intranet/*',
+        '~/IdeaProjects/tc_code/corporate-website/*',
+        '~/.config/*',
+      },
+      picker = {
+        type = 'telescope',
+      },
+    },
+    init = function()
+      -- enable saving the state of plugins in the session
+      vim.opt.sessionoptions:append 'globals' -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
+    end,
+    dependencies = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope.nvim', tag = '0.1.4' },
+      { 'Shatur/neovim-session-manager' },
+    },
+    lazy = false,
+    priority = 100,
+    keys = {
+      { '<leader>spp', ':NeovimProjectDiscover<CR>', desc = '[S]earch for [p]roject from specified patterns' },
+      { '<leader>spr', ':NeovimProjectHistory<CR>', desc = '[S]earch for [p]roject from [r]ecent ones' },
+    },
+  },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
