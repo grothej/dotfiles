@@ -8,6 +8,7 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+vim.opt.winborder = 'rounded'
 -- Make line numbers default
 vim.opt.number = true
 
@@ -100,10 +101,6 @@ end, { desc = 'Open diagnostic [Q]uickfix list and return focus' })
 vim.keymap.set('n', '<leader>c', ':lclose<CR>')
 vim.keymap.set('n', '<C-n>', ':lnext<CR>')
 vim.keymap.set('n', '<C-p>', ':lprevious<CR>')
-
--- vim.keymap.set('', '<C-n>', ':cnext<CR>')
--- vim.keymap.set('', '<C-p>', ':cprevious<CR>')
--- vim.keymap.set('', '<leader>c', ':cclose<CR>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -422,10 +419,10 @@ require('lazy').setup({
       })
 
       -- configure defaults for all language servers
-
       vim.lsp.config('*', {
         root_markers = { '.git' },
       })
+
       -- configure individual language servers
       local language_servers = {
         lua_ls = {
@@ -500,9 +497,6 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
@@ -515,8 +509,10 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        go = { 'goimports' },
+        bash = { 'shfmt' },
+        yaml = { 'yamlfmt' },
+        -- javascript = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
@@ -548,34 +544,27 @@ require('lazy').setup({
     --- @type blink.cmp.Config
     opts = {
       keymap = {
-        -- All presets have the following mappings:
-        -- <tab>/<s-tab>: move to right/left of your snippet expansion
-        -- <c-space>: Open menu or open docs if already open
-        -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
-        -- <c-e>: Hide menu
-        -- <c-k>: Toggle signature help
-        --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
-
-        -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-        --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
 
       appearance = {
-        -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
       },
 
       completion = {
-        -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 500, window = { border = 'rounded' } },
+        menu = {
+          border = 'rounded',
+        },
+        ghost_text = {
+          enabled = true,
+        },
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
@@ -675,8 +664,9 @@ require('lazy').setup({
   },
   {
     'tpope/vim-fugitive',
-    -- keys = {
-    -- { '<leader>gf', ':G fetch', desc = '[G]it [f]etch' },}
+    keys = {
+      { '<leader>gf', ':G fetch<CR>', desc = '[G]it [f]etch' },
+    },
   },
   {
     'coffebar/neovim-project',
@@ -686,7 +676,8 @@ require('lazy').setup({
         '~/IdeaProjects/tc_code/*',
         '~/IdeaProjects/tc_code/intranet/*',
         '~/IdeaProjects/tc_code/corporate-website/*',
-        '~/.config/*',
+        '~/dotfiles/*',
+        '~/programming/go-testing/go/',
       },
       picker = {
         type = 'telescope',
@@ -708,7 +699,12 @@ require('lazy').setup({
       { '<leader>spr', ':NeovimProjectHistory<CR>', desc = '[S]earch for [p]roject from [r]ecent ones' },
     },
   },
-
+  -- automatically close pairs
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+  },
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.

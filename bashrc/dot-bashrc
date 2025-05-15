@@ -222,3 +222,6 @@ eval "$(fzf --bash)"
 
 # set todo-txt config path
 export TODO_DIR=$XDG_CONFIG_HOME/todo/todo
+
+# zoxide
+eval "$(zoxide init bash)"
