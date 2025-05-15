@@ -1,9 +1,8 @@
--- basic lua guide for neovim help la-guide
+-- basic lua guide for neovim help lua-guide
 
 -- Set <space> as the leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 -- [[ Setting options ]]
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
