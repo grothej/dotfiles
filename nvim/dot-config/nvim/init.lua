@@ -77,6 +77,9 @@ vim.opt.visualbell = true
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- copy whole file content
+vim.keymap.set('n', 'yw', '<cmd>%y<CR>')
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -640,8 +643,8 @@ require('lazy').setup({
   {
     'nvim-tree/nvim-tree.lua',
     keys = {
-      { '<leader>tt', ':NvimTreeToggle<CR>', desc = 'Toggle Nvim[T]ree' },
-      { '<leader>tf', ':NvimTreeFindFileToggle<CR>', desc = '[T]oggle Nvim[T]ree focus on [file]' },
+      { '<leader>tt', ':NvimTreeFindFileToggle<CR>', desc = '[T]oggle Nvim[T]ree' },
+      { '<leader>tf', ':NvimTreeFocus<CR>', desc = '[T]oggle Nvim[T]ree [f]ocus ' },
     },
     opts = {
       disable_netrw = true,
