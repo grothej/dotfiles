@@ -78,10 +78,38 @@ vim.opt.visualbell = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- copy whole file content
-vim.keymap.set('n', 'yw', '<cmd>%y<CR>')
+vim.keymap.set('n', 'yw', '<cmd>%y<CR>', { desc = '[y]' })
 
--- Sync clipboard between OS and Neovim.
+-- sort selected lines
+vim.keymap.set('v', 'grs', '<cmd>sort<CR>', { desc = '[s]ort' })
+
+-- qf list and loc list navigation mappings
+--- execute the given command for a qf list or loc list of current window
+--- @param cmd string
+function navigate_list(cmd)
+  local loc_list_length = vim.fn.getloclist(0, { size = 1 }).size
+  local qf_list_length = vim.fn.getqflist({ size = 1 }).size
+
+  if loc_list_length > 0 then
+    vim.cmd('l' .. cmd)
+  end
+
+  if qf_list_length > 0 then
+    vim.cmd('c' .. cmd)
+  end
+end
+vim.keymap.set('n', '<leader>c', function()
+  navigate_list 'close'
+end, { desc = 'close list' })
+vim.keymap.set('n', '<C-n>', function()
+  navigate_list 'next'
+end, { desc = 'next entry in list' })
+vim.keymap.set('n', '<C-p>', function()
+  navigate_list 'prev'
+end, { desc = 'next entry in list' })
+
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
+-- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
@@ -93,6 +121,7 @@ end)
 -- then focus on the initial window insead of the loclist window
 vim.keymap.set('n', '<leader>q', function()
   vim.diagnostic.setloclist()
+
   vim.cmd 'wincmd p'
 
   local loclist = vim.fn.getloclist(0)
@@ -100,10 +129,6 @@ vim.keymap.set('n', '<leader>q', function()
     vim.cmd 'll 1'
   end
 end, { desc = 'Open diagnostic [Q]uickfix list and return focus' })
-
-vim.keymap.set('n', '<leader>c', ':lclose<CR>')
-vim.keymap.set('n', '<C-n>', ':lnext<CR>')
-vim.keymap.set('n', '<C-p>', ':lprevious<CR>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -137,26 +162,14 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.opt.timeoutlen
-      delay = 0,
+      preset = 'helix',
+      delay = 300,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
@@ -166,6 +179,7 @@ require('lazy').setup({
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>g', group = '[G]it' },
       },
     },
   },
@@ -280,7 +294,7 @@ require('lazy').setup({
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
-      'saghen/blink.cmp',
+      -- 'saghen/blink.cmp',
     },
     config = function()
       -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
@@ -411,7 +425,7 @@ require('lazy').setup({
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      -- local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       -- set autocommand for detecting gitlab-ci files
       vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
@@ -459,7 +473,7 @@ require('lazy').setup({
 
       -- iterate through lsp's and apply config
       for server_name, config in pairs(language_servers) do
-        config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
+        -- config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
         vim.lsp.config(server_name, config)
       end
 
@@ -610,6 +624,8 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      require('mini.pairs').setup()
+      require('mini.move').setup()
 
       local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
@@ -667,8 +683,14 @@ require('lazy').setup({
   },
   {
     'tpope/vim-fugitive',
+    opt = true,
+    lazy = false,
     keys = {
       { '<leader>gf', ':G fetch<CR>', desc = '[G]it [f]etch' },
+      { '<leader>gp', ':G pull<CR>', desc = '[G]it [p]ull' },
+      { '<leader>gP', ':G push<CR>', desc = '[G]it [p]ush' },
+      { '<leader>ga', ':Gwrite<CR>', desc = '[G]it [a]dd current buffer' },
+      { '<leader>gc', ':G commit<CR>', desc = '[G]it [p]ush' },
     },
   },
   {
@@ -702,24 +724,10 @@ require('lazy').setup({
       { '<leader>spr', ':NeovimProjectHistory<CR>', desc = '[S]earch for [p]roject from [r]ecent ones' },
     },
   },
-  -- automatically close pairs
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = true,
-  },
-  -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  -- place them in the correct locations.
 
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.lint',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
