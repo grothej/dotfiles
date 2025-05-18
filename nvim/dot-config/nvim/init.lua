@@ -158,7 +158,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 --
--- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -687,10 +686,13 @@ require('lazy').setup({
     lazy = false,
     keys = {
       { '<leader>gf', ':G fetch<CR>', desc = '[G]it [f]etch' },
+      { '<leader>gg', ':tab G <CR>', desc = '[G]it' },
       { '<leader>gp', ':G pull<CR>', desc = '[G]it [p]ull' },
       { '<leader>gP', ':G push<CR>', desc = '[G]it [p]ush' },
       { '<leader>ga', ':Gwrite<CR>', desc = '[G]it [a]dd current buffer' },
       { '<leader>gc', ':G commit<CR>', desc = '[G]it [p]ush' },
+      { '<leader>gc', ':G blame<CR>', desc = '[G]it [b]lame' },
+      { '<leader>gl', ':Gllog<CR>', desc = '[G]it [l]ogs' },
     },
   },
   {
