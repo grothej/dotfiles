@@ -1,6 +1,4 @@
--- basic lua guide for neovim help lua-guide
-
--- Set <space> as the leader key
+-- basic lua guide for neovim help lua-guide Set <space> as the leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- [[ Setting options ]]
@@ -74,6 +72,7 @@ vim.opt.visualbell = true
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+vim.keymap.set('n', '<leader>tc', '<cmd>tabc<CR>')
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -539,9 +538,6 @@ require('lazy').setup({
         'L3MON4D3/LuaSnip',
         version = '2.*',
         build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
           if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
             return
           end
@@ -591,12 +587,11 @@ require('lazy').setup({
     },
   },
   {
-    'sainnhe/gruvbox-material',
-    lazy = false,
+    'catppuccin/nvim',
+    name = 'catppuccin',
     priority = 1000,
     config = function()
-      vim.g.gruvbox_material_enable_italic = true
-      vim.cmd.colorscheme 'gruvbox-material'
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
   -- {
@@ -613,11 +608,6 @@ require('lazy').setup({
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
       require('mini.pairs').setup()
       require('mini.move').setup()
@@ -677,18 +667,41 @@ require('lazy').setup({
     },
   },
   {
-    'tpope/vim-fugitive',
-    opt = true,
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        'sindrets/diffview.nvim',
+        lazy = false,
+        keys = {
+          { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = '[G]it diffview' },
+        },
+      },
+      'nvim-telescope/telescope.nvim',
+    },
+    opts = {},
+    keys = {
+      { '<leader>gg', '<cmd>Neogit kind=floating<CR>', desc = '[G]it' },
+      { '<leader>gp', '<cmd>Neogit pull<CR>', desc = '[G]it [p]ull' },
+    },
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      signs = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+    },
     lazy = false,
     keys = {
-      { '<leader>gf', ':G fetch<CR>', desc = '[G]it [f]etch' },
-      { '<leader>gg', ':tab G <CR>', desc = '[G]it' },
-      { '<leader>gp', ':G pull<CR>', desc = '[G]it [p]ull' },
-      { '<leader>gP', ':G push<CR>', desc = '[G]it [p]ush' },
-      { '<leader>ga', ':Gwrite<CR>', desc = '[G]it [a]dd current buffer' },
-      { '<leader>gc', ':G commit<CR>', desc = '[G]it [p]ush' },
-      { '<leader>gc', ':G blame<CR>', desc = '[G]it [b]lame' },
-      { '<leader>gl', ':Gllog<CR>', desc = '[G]it [l]ogs' },
+      { '<leader>gbb', '<cmd>Gitsigns blame<CR>', desc = '[G]it [b]lame [b]uffer' },
+      { '<leader>gbl', '<cmd>Gitsigns blame<CR>', desc = '[G]it [b]lame [l]ine' },
+      { '<leader>ghp', '<cmd>Gitsigns preview_hunk_inline<CR>', desc = '[G]it [h]unk [p]review' },
+      { '<leader>ghl', '<cmd>Gitsigns setqflist<CR>', desc = '[G]it [h]unks [l]ist' },
     },
   },
   {
@@ -718,7 +731,7 @@ require('lazy').setup({
     lazy = false,
     priority = 100,
     keys = {
-      { '<leader>pp', ':NeovimProjectDiscover<CR>', desc = 'Search for [p]roject' },
+      { '<leader>pp', ':NeovimProjectDiscover<CR>', desc = 'Search for [p]roject from specified patterns' },
       { '<leader>pr', ':NeovimProjectHistory<CR>', desc = 'Search [p]roject from [r]ecent ones' },
     },
   },
