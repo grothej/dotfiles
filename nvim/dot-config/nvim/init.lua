@@ -259,7 +259,6 @@ require('lazy').setup({
       end, { desc = '[S]earch [/] in Open Files' })
     end,
   },
-  { 'nvim-java/nvim-java', opts = {} },
   -- LSP Plugins
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -688,7 +687,7 @@ require('lazy').setup({
     lazy = false,
     keys = {
       { '<leader>gbb', '<cmd>Gitsigns blame<CR>', desc = '[G]it [b]lame [b]uffer' },
-      { '<leader>gbl', '<cmd>Gitsigns blame<CR>', desc = '[G]it [b]lame [l]ine' },
+      { '<leader>gbl', '<cmd>Gitsigns blame_line<CR>', desc = '[G]it [b]lame [l]ine' },
       { '<leader>ghp', '<cmd>Gitsigns preview_hunk_inline<CR>', desc = '[G]it [h]unk [p]review' },
       { '<leader>ghl', '<cmd>Gitsigns setqflist<CR>', desc = '[G]it [h]unks [l]ist' },
     },

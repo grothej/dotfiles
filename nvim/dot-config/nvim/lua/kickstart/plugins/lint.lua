@@ -44,9 +44,18 @@ return {
         end,
       })
 
-      vim.keymap.set('n', '<leader>l', function()
+      vim.keymap.set('n', '<leader>ll', function()
         lint.try_lint()
-      end, { desc = 'Lint current buffer' })
+      end, { desc = '[L ]int current [b]uffer' })
+
+      vim.keymap.set('n', '<leader>ls', function()
+        local linters = require('lint').get_running()
+        if #linters == 0 then
+          print 'hello'
+          return '󰦕'
+        end
+        return '󱉶 ' .. table.concat(linters, ', ')
+      end, { desc = '[l]inters [s]how' })
     end,
   },
 }
