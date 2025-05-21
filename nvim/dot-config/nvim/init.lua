@@ -259,7 +259,8 @@ require('lazy').setup({
       end, { desc = '[S]earch [/] in Open Files' })
     end,
   },
-  -- LSP Plugins
+  -- LSP Plugis
+  { 'mfussenegger/nvim-jdtls' },
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
@@ -451,6 +452,7 @@ require('lazy').setup({
             },
           },
         },
+        jdtls = {},
       }
 
       -- iterate through lsp's and apply config
@@ -616,7 +618,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'yaml', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'yaml', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'java' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
