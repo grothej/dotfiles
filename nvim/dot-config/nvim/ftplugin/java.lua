@@ -1,3 +1,7 @@
+-- load os specific config data
+local os_config = require 'kickstart.plugins.os-config'
+
+--
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
@@ -28,7 +32,7 @@ local config = {
     -- eclipse.jdt.ls installation                                           the actual version
 
     '-configuration',
-    installation_path .. '/packages/jdtls/config_mac_arm',
+    installation_path .. '/packages/jdtls/' .. os_config.get_jdtls_config_name(),
     -- eclipse.jdt.ls installation            Depending on your system.
 
     '-data',
