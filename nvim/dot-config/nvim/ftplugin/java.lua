@@ -2,7 +2,6 @@
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.expand '~/.local/share/nvim/jdtls-workspace/' .. project_name
-
 local installation_path = vim.fn.stdpath 'data' .. '/mason'
 
 local config = {
@@ -29,7 +28,7 @@ local config = {
     -- eclipse.jdt.ls installation                                           the actual version
 
     '-configuration',
-    installation_path .. '/packages/jdtls/config_linux',
+    installation_path .. '/packages/jdtls/config_mac_arm',
     -- eclipse.jdt.ls installation            Depending on your system.
 
     '-data',
@@ -56,4 +55,6 @@ local config = {
     bundles = {},
   },
 }
+-- print(require('spring_boot').java_extensions())
+-- vim.list_extend(config.bundles, require('spring_boot').java_extensions())
 require('jdtls').start_or_attach(config)

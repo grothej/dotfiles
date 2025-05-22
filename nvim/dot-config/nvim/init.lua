@@ -158,7 +158,7 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 --
 require('lazy').setup({
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  { 'NMAC427/guess-indent.nvim', opts = {} }, -- Detect tabstop and shiftwidth automatically
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
@@ -260,6 +260,8 @@ require('lazy').setup({
     end,
   },
   -- LSP Plugis
+  --
+  -- Java
   {
     'mfussenegger/nvim-jdtls',
     ft = 'java',
@@ -271,9 +273,9 @@ require('lazy').setup({
   {
     'elmcgill/springboot-nvim',
     depedencies = {
-      'neovim/nvim-lspconfig',
       'mfussenegger/nvim-jdtls',
     },
+    ft = 'java',
     config = function()
       local springboot_nvim = require 'springboot-nvim'
       vim.keymap.set('n', '<leader>Jr', springboot_nvim.boot_run, { desc = 'Spring Boot Run Project' })
@@ -283,6 +285,16 @@ require('lazy').setup({
       springboot_nvim.setup()
     end,
   },
+  {
+    'JavaHello/spring-boot.nvim',
+    ft = 'java',
+    dependencies = {
+      'mfussenegger/nvim-jdtls',
+    },
+    opts = {},
+  },
+  ------------------------------
+
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
@@ -474,7 +486,6 @@ require('lazy').setup({
             },
           },
         },
-        jdtls = {},
       }
 
       -- iterate through lsp's and apply config
@@ -499,6 +510,10 @@ require('lazy').setup({
       ---@diagnostic disable-next-line: missing-fields
       require('mason-lspconfig').setup {
         ensure_installed = { 'lua_ls' },
+        automatic_enable = {
+          -- don't enable the following language servers
+          exclude = { 'jdtls' },
+        },
       }
     end,
   },
@@ -699,15 +714,7 @@ require('lazy').setup({
   },
   {
     'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
+    opts = {},
     lazy = false,
     keys = {
       { '<leader>gbb', '<cmd>Gitsigns blame<CR>', desc = '[G]it [b]lame [b]uffer' },
