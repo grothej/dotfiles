@@ -550,6 +550,7 @@ require('lazy').setup({
         go = { 'goimports' },
         bash = { 'shfmt' },
         yaml = { 'yamlfmt' },
+        markdown = { 'markdownlint' },
         -- javascript = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
@@ -721,6 +722,8 @@ require('lazy').setup({
       { '<leader>gbl', '<cmd>Gitsigns blame_line<CR>', desc = '[G]it [b]lame [l]ine' },
       { '<leader>ghp', '<cmd>Gitsigns preview_hunk_inline<CR>', desc = '[G]it [h]unk [p]review' },
       { '<leader>ghl', '<cmd>Gitsigns setqflist<CR>', desc = '[G]it [h]unks [l]ist' },
+      { '<leader>gha', '<cmd>Gitsigns stage_hunk<CR>', desc = '[G]it [h]unks [a]dd' },
+      { '<leader>ghr', '<cmd>Gitsigns undo_stage_hunk<CR>', desc = '[G]it [h]unks [r]estore' },
     },
   },
   {
@@ -752,6 +755,11 @@ require('lazy').setup({
     keys = {
       { '<leader>pp', ':NeovimProjectDiscover<CR>', desc = 'Search for [p]roject from specified patterns' },
       { '<leader>pr', ':NeovimProjectHistory<CR>', desc = 'Search [p]roject from [r]ecent ones' },
+    },
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim', 'nvim-tree/nvim-web-devicons' }, -- if you use the mini.nvim suite
+      opts = {},
     },
   },
 
