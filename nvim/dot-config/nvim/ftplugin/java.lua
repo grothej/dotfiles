@@ -1,5 +1,5 @@
 -- load os specific config data
-local os_config = require 'kickstart.plugins.os-config'
+local os_config = require 'custom.plugins.os-config'
 
 --
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
@@ -59,6 +59,6 @@ local config = {
     bundles = {},
   },
 }
--- print(require('spring_boot').java_extensions())
--- vim.list_extend(config.bundles, require('spring_boot').java_extensions())
+vim.print(require('spring_boot').java_extensions())
+vim.list_extend(jdtls_config.bundles, require('spring_boot').java_extensions())
 require('jdtls').start_or_attach(config)
