@@ -207,7 +207,6 @@ require('lazy').setup({
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
-      -- [[ Configure Telescope ]]
       require('telescope').setup {
         defaults = {
           file_ignore_patterns = {
@@ -291,9 +290,7 @@ require('lazy').setup({
     dependencies = {
       'mfussenegger/nvim-jdtls',
     },
-    opts = {
-      ls_path = '/mnt/c/Users/justi/.vscode/extensions/vmware.vscode-spring-boot-1.62.0',
-    },
+    opts = {},
   },
   ------------------------------
 
