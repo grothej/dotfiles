@@ -19,6 +19,9 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    {
+      'jbyuki/one-small-step-for-vimkind',
+    },
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -72,6 +75,14 @@ return {
       end,
       desc = 'Debug: See last session result.',
     },
+    {
+      'n',
+      '<leader>d',
+      function()
+        require('osv').launch { port = 8086 }
+      end,
+      desc = 'launch lua server',
+    },
   },
   config = function()
     local dap = require 'dap'
@@ -86,10 +97,7 @@ return {
       -- see mason-nvim-dap README for more information
       handlers = {},
 
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
       ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
       },
     }
@@ -97,9 +105,6 @@ return {
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
         icons = {
@@ -117,28 +122,37 @@ return {
     }
 
     -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- debugger specific configuration
+    --
+    -- lua
+    dap.configurations.lua = {
+      {
+        type = 'nlua',
+        request = 'attach',
+        name = 'Attach to running Neovim instance',
+      },
+    }
+    dap.adapters.nlua = function(callback, config)
+      callback { type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086 }
+    end
     -- Install golang specific config
     require('dap-go').setup {
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has 'win32' == 0,
-      },
+      delve = {},
     }
   end,
 }
