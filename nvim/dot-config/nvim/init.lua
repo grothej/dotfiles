@@ -762,15 +762,7 @@ require('lazy').setup({
     },
   },
 
-  require 'plugins.debug',
-  require 'plugins.indent_line',
-  require 'plugins.lint',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
-  --
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'plugins' },
 
   ---@diagnostic disable-next-line: missing-fields
 }, {
