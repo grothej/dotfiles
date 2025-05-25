@@ -1,5 +1,5 @@
 -- load os specific config data
-local os_config = require 'custom.plugins.os-config'
+local os_config = require 'os-config'
 
 --
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
