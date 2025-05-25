@@ -7,6 +7,7 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         javascript = { 'eslint_d' },
+        -- java = { 'checkstyle' },
         typescript = { 'eslint_d' },
         go = { 'golangcilint' },
         text = { 'vale' },
@@ -51,7 +52,6 @@ return {
       vim.keymap.set('n', '<leader>ls', function()
         local linters = require('lint').get_running()
         if #linters == 0 then
-          print 'hello'
           return '󰦕'
         end
         return '󱉶 ' .. table.concat(linters, ', ')
