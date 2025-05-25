@@ -519,7 +519,13 @@ require('lazy').setup({
 
   {
     'https://gitlab.com/schrieveslaach/sonarlint.nvim',
-    lazy = false,
+    ft = {
+      'cs',
+      'dockerfile',
+      'python',
+      'cpp',
+      'java',
+    },
     config = function()
       require('sonarlint').setup {
         server = {

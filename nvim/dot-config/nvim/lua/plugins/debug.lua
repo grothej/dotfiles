@@ -75,14 +75,6 @@ return {
       end,
       desc = 'Debug: See last session result.',
     },
-    {
-      'n',
-      '<leader>d',
-      function()
-        require('osv').launch { port = 8086 }
-      end,
-      desc = 'launch lua server',
-    },
   },
   config = function()
     local dap = require 'dap'
