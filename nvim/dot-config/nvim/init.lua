@@ -280,11 +280,11 @@ require('lazy').setup({
       { '<leader>pp', ':NeovimProjectDiscover<CR>', desc = 'Search for [p]roject from specified patterns' },
       { '<leader>pr', ':NeovimProjectHistory<CR>', desc = 'Search [p]roject from [r]ecent ones' },
     },
-    {
-      'MeanderingProgrammer/render-markdown.nvim',
-      dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim', 'nvim-tree/nvim-web-devicons' }, -- if you use the mini.nvim suite
-      opts = {},
-    },
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim', 'nvim-tree/nvim-web-devicons' }, -- if you use the mini.nvim suite
+    opts = {},
   },
 
   ---@diagnostic disable-next-line: missing-fields
