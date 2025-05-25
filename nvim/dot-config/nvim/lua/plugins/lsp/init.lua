@@ -1,3 +1,4 @@
+-- default plugins for interacting with language server
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
