@@ -20,7 +20,7 @@ return { -- Autoformat
         return nil
       else
         return {
-          timeout_ms = 500,
+          timeout_ms = 1000,
           lsp_format = 'fallback',
         }
       end
@@ -31,6 +31,7 @@ return { -- Autoformat
       bash = { 'shfmt' },
       yaml = { 'yamlfmt' },
       markdown = { 'markdownlint' },
+      kotlin = { 'ktlint' },
       -- javascript = { 'prettierd', 'prettier', stop_after_first = true },
     },
   },

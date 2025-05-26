@@ -10,7 +10,7 @@ return {
   {
     'rebelot/kanagawa.nvim',
     lazy = true,
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    priority = 1000, -- make sure to load this before all the other start plugins.
     config = function()
       require('kanagawa').load 'wave'
     end,

@@ -16,6 +16,7 @@ return {
         terraform = { 'tflint' },
         dockerfile = { 'hadolint' },
         bash = { 'shellcheck' },
+        -- kotlin = { 'ktlint' },
       }
 
       -- You can disable the default linters by setting their filetypes to nil:
