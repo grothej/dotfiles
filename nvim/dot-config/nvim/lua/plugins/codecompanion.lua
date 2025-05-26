@@ -21,7 +21,7 @@ return {
           name = 'ollama', -- Geben Sie dem Adapter einen Namen
           schema = {
             model = {
-              default = 'deepseek-coder:6.7b',
+              default = 'qwen2.5-coder:7b',
             },
             num_ctx = {
               default = 16384,
