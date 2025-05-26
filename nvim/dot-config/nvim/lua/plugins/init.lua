@@ -48,31 +48,6 @@ return {
     },
   },
   {
-    'nvim-tree/nvim-tree.lua',
-    keys = {
-      { '<leader>tt', ':NvimTreeFindFileToggle<CR>', desc = '[T]oggle Nvim[T]ree' },
-      { '<leader>tf', ':NvimTreeFocus<CR>', desc = '[T]oggle Nvim[T]ree [f]ocus ' },
-    },
-    opts = {
-      disable_netrw = true,
-      hijack_cursor = true,
-      sync_root_with_cwd = true,
-      respect_buf_cwd = true,
-      update_focused_file = {
-        enable = true,
-        update_root = {
-          enable = true,
-        },
-      },
-      modified = {
-        enable = true,
-      },
-      filters = {
-        custom = {},
-      },
-    },
-  },
-  {
     'coffebar/neovim-project',
     opts = {
       projects = {
@@ -107,5 +82,17 @@ return {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim', 'nvim-tree/nvim-web-devicons' }, -- if you use the mini.nvim suite
     opts = {},
+  },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+    keys = {
+      { '<leader>o', '<cmd>Oil --float<CR>', desc = 'Open tree' },
+    },
   },
 }
