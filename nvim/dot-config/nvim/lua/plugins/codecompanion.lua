@@ -21,7 +21,8 @@ return {
           name = 'ollama', -- Geben Sie dem Adapter einen Namen
           schema = {
             model = {
-              default = 'qwen2.5-coder:7b',
+              -- default = 'qwen2.5-coder:7b',
+              default = 'deepcoder:14b',
             },
             num_ctx = {
               default = 16384,

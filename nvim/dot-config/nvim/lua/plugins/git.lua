@@ -12,12 +12,7 @@ return {
       },
       'nvim-telescope/telescope.nvim',
     },
-    opts = {
-      floating = {
-        syle = 'classic',
-        border = 'bold',
-      },
-    },
+    opts = {},
     keys = {
       { '<leader>gg', '<cmd>Neogit kind=floating<CR>', desc = '[G]it' },
       { '<leader>gp', '<cmd>Neogit pull<CR>', desc = '[G]it [p]ull' },

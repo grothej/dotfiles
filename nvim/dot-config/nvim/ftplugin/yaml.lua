@@ -90,6 +90,14 @@ local function set_kubernetes_schema(enable_k8s)
   end
 end
 
+-- set autocommand for detecting gitlab-ci files
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.gitlab-ci*.{yml,yaml}',
+  callback = function()
+    vim.bo.filetype = 'yaml.gitlab'
+  end,
+})
+
 -- Funktion zur Schema-Erkennung und -Aktivierung
 local function check_and_set_kubernetes_schema()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
