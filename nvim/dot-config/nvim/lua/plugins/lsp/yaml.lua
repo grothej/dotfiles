@@ -18,7 +18,7 @@ return {
                 {
                   name = 'Bitnami Sealed Secret',
                   description = 'Bitnami Sealed Secret',
-                  fileMatch = '*sealed*.yaml',
+                  fileMatch = { '*sealed*.y*ml' },
                   url = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/bitnami.com/sealedsecret_v1alpha1.json',
                 },
               },
@@ -31,5 +31,10 @@ return {
         },
       }
     end,
+  },
+  {
+    'git@github.com:grothej/k8s-schema-helper.nvim',
+    opts = {},
+    ft = 'yaml',
   },
 }

@@ -4,6 +4,9 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup()
     require('mini.pairs').setup()
     require('mini.move').setup()
+    require('mini.misc').setup {
+      make_global = { 'setup_auto_root' },
+    }
 
     local statusline = require 'mini.statusline'
     -- set use_icons to true if you have a Nerd Font
