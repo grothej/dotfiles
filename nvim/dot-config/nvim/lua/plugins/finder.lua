@@ -40,6 +40,7 @@ return {
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'project')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -73,5 +74,19 @@ return {
         }
       end, { desc = '[S]earch [/] in Open Files' })
     end,
+  },
+  {
+    'nvim-telescope/telescope-project.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+    keys = {
+      {
+        'n',
+        '<leader>sp',
+        '<cmd>Telescope<CR>',
+        desc = '[S]earch [P]rojects',
+      },
+    },
   },
 }
