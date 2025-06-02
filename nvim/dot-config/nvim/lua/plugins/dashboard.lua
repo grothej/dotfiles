@@ -14,9 +14,8 @@ return {
 | $$$$\ $$|  $$$$$$\|  $$$$$$\ \$$\ /  $$| $$| $$$$$$\$$$$\
 | $$\$$ $$| $$    $$| $$  | $$  \$$\  $$ | $$| $$ | $$ | $$
 | $$ \$$$$| $$$$$$$$| $$__/ $$   \$$ $$  | $$| $$ | $$ | $$
-| $$  \$$$ \$$     \ \$$    $$    \$$$   | $$| $$ | $$ | $$
- \$$   \$$  \$$$$$$$  \$$$$$$      \$     \$$ \$$  \$$  \$$
-
+| $$  \$$$ \$$     \ \$$    $$    \$$$$  | $$| $$ | $$ | $$
+ \$$   \$$  \$$$$$$$  \$$$$$$      \$`$\  \$$ \$$  \$$  \$$
                                      `$/              
            __                        O$               
        _.-"  )                        $'              
@@ -59,10 +58,12 @@ return {
 
       -- Buttons Section
       dashboard_theme.section.buttons.val = {
-        dashboard_theme.button('f', ' Find file', '<cmd>Telescope find_files <CR>'),
+        dashboard_theme.button('f', ' Find file', '<cmd>Telescope find_files<CR>'),
         dashboard_theme.button('r', ' Recent files', '<cmd>Telescope oldfiles <CR>'),
         dashboard_theme.button('p', ' Projects', '<cmd>Telescope project<CR>'),
         dashboard_theme.button('n', ' New file', '<cmd>edit<CR>'),
+        dashboard_theme.button('e', '󰏔 Extensions', '<cmd>Lazy<CR>'),
+        dashboard_theme.button('l', "󰌞 LSP's", '<cmd>Mason<CR>'),
         dashboard_theme.button('q', ' Close', '<cmd>q<CR>'),
       }
       dashboard_theme.section.buttons.opts.hl = 'AlphaButtons'
