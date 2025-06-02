@@ -61,6 +61,9 @@ vim.opt.mouse = ''
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- automatically change cwd to buffer path
+vim.opt.autochdir = true
+
 -- automatic intendation
 vim.opt.autoindent = true
 vim.opt.smartindent = true
