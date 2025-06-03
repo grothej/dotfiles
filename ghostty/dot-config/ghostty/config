@@ -3,6 +3,8 @@ theme = catppuccin-mocha
 mouse-hide-while-typing = true
 font-size = 15
 font-family = "JetBrainsMono Nerd Font Mono"
+background-opacity = 0.9
+background-blur = true
 
 macos-option-as-alt = true
 
