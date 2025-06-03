@@ -16,10 +16,12 @@ return {
     'thesimonho/kanagawa-paper.nvim',
     lazy = true,
     priority = 1000,
-    opts = {},
-    config = function()
+    init = function()
       vim.cmd 'colorscheme kanagawa-paper-ink'
     end,
+    opts = {
+      transparent = true,
+    },
   },
   {
     'rebelot/kanagawa.nvim',
