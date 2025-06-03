@@ -1,15 +1,20 @@
 return {
   {
     'catppuccin/nvim',
-    lazy = true,
+    -- lazy = true,
     name = 'catppuccin',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
+      require('catppuccin').setup {
+        flavour = 'auto', -- latte, frappe, macchiato, mocha
+        transparent_background = true, -- disables setting the background color.
+      }
+      vim.cmd.colorscheme 'catppuccin'
     end,
   },
   {
     'thesimonho/kanagawa-paper.nvim',
+    lazy = true,
     priority = 1000,
     opts = {},
     config = function()
@@ -19,7 +24,7 @@ return {
   {
     'rebelot/kanagawa.nvim',
     lazy = true,
-    priority = 1000, -- make sure to load this before all the other start plugins.
+    priority = 1000,
     config = function()
       require('kanagawa').load 'wave'
     end,
