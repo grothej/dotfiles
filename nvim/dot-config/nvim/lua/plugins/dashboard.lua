@@ -54,7 +54,7 @@ S$    : .-   ; : :SSSP  \_/.'   \     `^S$$$$SS
   ]]
 
       dashboard_theme.section.header.val = vim.split(logo, '\n')
-      dashboard_theme.section.header.opts.hl = 'AlphaHeaderGreen'
+      dashboard_theme.section.header.opts.hl = 'AlphaHeaderYellow'
       vim.api.nvim_set_hl(0, 'AlphaHeaderGreen', { fg = '#50fa7b', bold = true })
 
       -- Buttons Section
