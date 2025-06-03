@@ -1,4 +1,4 @@
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 
 # "oh-my-zsh" configuration
@@ -22,7 +22,7 @@ ZSH_THEME="agnoster"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git gradle kubectl)
+plugins=(git gradle kubectl zoxide )
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
@@ -48,7 +48,7 @@ autoload -Uz compinit && compinit
 # Todo.txt 
 alias t='todo.sh'
  
- 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # gitlab-ci-local 
 export GCL_NEEDS='true'
@@ -103,7 +103,6 @@ _gitlab-ci-local_yargs_completions()
 }
 compdef _gitlab-ci-local_yargs_completions gitlab-ci-local
 
-eval "$(zoxide init zsh)"
 # start ssh-agent
 eval "$(ssh-agent -s)" 1>/dev/null
 
