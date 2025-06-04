@@ -91,6 +91,7 @@ prompt_context() {
 prompt_dir() {
   prompt_segment blue black '%1~'
 }
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=119,bold"
 
 _gitlab-ci-local_yargs_completions()
 {
