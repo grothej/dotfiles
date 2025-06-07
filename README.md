@@ -4,7 +4,7 @@ Repository for personal dotfiles
 
 ## Prerequisites
 
-- gnu-stow (> v2.4.0)
+- gnu-stow (>= v2.4.0)
 - git
 
 These configs are maintained and applied with stow. All configurations are maintained in packages, which

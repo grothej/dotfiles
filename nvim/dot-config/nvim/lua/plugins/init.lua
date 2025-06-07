@@ -50,37 +50,6 @@ return {
       indent = { enable = true, disable = { 'ruby' } },
     },
   },
-  -- {
-  --   'coffebar/neovim-project',
-  --   opts = {
-  --     projects = {
-  --       '~/projects/*',
-  --       '~/IdeaProjects/tc_code/*',
-  --       '~/IdeaProjects/tc_code/intranet/*',
-  --       '~/IdeaProjects/tc_code/corporate-website/*',
-  --       '~/dotfiles/*',
-  --       '~/programming/go-testing/go/',
-  --     },
-  --     picker = {
-  --       type = 'telescope',
-  --     },
-  --   },
-  --   init = function()
-  --     -- enable saving the state of plugins in the session
-  --     vim.opt.sessionoptions:append 'globals' -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
-  --   end,
-  --   dependencies = {
-  --     { 'nvim-lua/plenary.nvim' },
-  --     { 'nvim-telescope/telescope.nvim' },
-  --     { 'Shatur/neovim-session-manager' },
-  --   },
-  --   lazy = false,
-  --   priority = 100,
-  --   keys = {
-  --     { '<leader>pp', ':NeovimProjectDiscover<CR>', desc = 'Search for [p]roject from specified patterns' },
-  --     { '<leader>pr', ':NeovimProjectHistory<CR>', desc = 'Search [p]roject from [r]ecent ones' },
-  --   },
-  -- },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     ft = { 'markdown', 'codecompanion' },
