@@ -68,4 +68,18 @@ return {
       { '<leader>o', '<cmd>Oil --float<CR>', desc = 'Open tree' },
     },
   },
+  {
+    'akinsho/toggleterm.nvim',
+    lazy = false,
+    version = '*',
+    opts = {
+      open_mapping = [[<leader>tt]],
+      autochdir = true,
+      insert_mappings = false,
+    },
+    keys = {
+      { '<esc>', [[<C-\><C-n>]], mode = 't' },
+      { '<C-h>', [[<C-\><C-n><cmd>wincmd k<CR>]], mode = 't' },
+    },
+  },
 }
