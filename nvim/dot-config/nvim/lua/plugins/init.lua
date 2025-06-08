@@ -73,7 +73,7 @@ return {
     lazy = false,
     version = '*',
     opts = {
-      open_mapping = [[<leader>tt]],
+      open_mapping = [[<C-t>]],
       autochdir = true,
       insert_mappings = false,
     },
