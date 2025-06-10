@@ -47,6 +47,8 @@ autoload -Uz compinit && compinit
  
 # Todo.txt 
 alias t='todo.sh'
+ 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # gitlab-ci-local 
 export GCL_NEEDS='true'
@@ -95,6 +97,10 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
+# autosuggestions config
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=119,bold"
+bindkey '^Y' end-of-line
+
 _gitlab-ci-local_yargs_completions()
 {
   local reply
@@ -111,8 +117,6 @@ eval "$(ssh-agent -s)" 1>/dev/null
 
 # auto suggestions
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^y' forward-char
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=119,bold"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
