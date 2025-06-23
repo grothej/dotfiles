@@ -5,6 +5,7 @@ return {
     version = '1.*',
     dependencies = {
       -- Snippet Engine
+      'moyiz/blink-emoji.nvim',
       {
         'L3MON4D3/LuaSnip',
         version = '2.*',
@@ -41,11 +42,22 @@ return {
           enabled = true,
         },
       },
-
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'emoji' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          emoji = {
+            module = 'blink-emoji',
+            name = 'Emoji',
+            score_offset = 15, -- Tune by preference
+            should_show_items = function()
+              return vim.tbl_contains(
+                -- Enable emoji completion only for git commits and markdown.
+                { 'gitcommit', 'markdown' },
+                vim.o.filetype
+              )
+            end,
+          },
         },
       },
 
