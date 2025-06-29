@@ -1,7 +1,7 @@
 return {
   {
     'catppuccin/nvim',
-    -- lazy = true,
+    lazy = true,
     name = 'catppuccin',
     priority = 1000,
     config = function()
@@ -14,14 +14,14 @@ return {
   },
   {
     'thesimonho/kanagawa-paper.nvim',
-    lazy = true,
+    -- lazy = true,
     priority = 1000,
     init = function()
       vim.cmd 'colorscheme kanagawa-paper-ink'
     end,
-    opts = {
-      transparent = true,
-    },
+    -- opts = {
+    --   transparent = true,
+    -- },
   },
   {
     'rebelot/kanagawa.nvim',

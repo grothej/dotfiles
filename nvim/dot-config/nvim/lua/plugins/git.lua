@@ -12,7 +12,16 @@ return {
       },
       'nvim-telescope/telescope.nvim',
     },
-    opts = {},
+    opts = {
+      graph_style = 'unicode',
+      telescope_sorter = function()
+        return require('telescope').extensions.fzf.native_fzf_sorter()
+      end,
+      kind = 'floating',
+      log_view = {
+        kind = 'floating',
+      },
+    },
     keys = {
       { '<leader>gg', '<cmd>Neogit kind=floating<CR>', desc = '[G]it' },
       { '<leader>gp', '<cmd>Neogit pull<CR>', desc = '[G]it [p]ull' },
