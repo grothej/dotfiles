@@ -3,9 +3,7 @@
 -- Shows how to use the DAP plugin to debug your code.
 
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
@@ -91,6 +89,8 @@ return {
 
       ensure_installed = {
         'delve',
+        'java-debug-adapter',
+        'java-test',
       },
     }
 

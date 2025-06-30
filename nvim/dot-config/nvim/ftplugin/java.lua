@@ -28,7 +28,7 @@ local config = {
     'java.base/java.lang=ALL-UNNAMED',
     '-javaagent:' .. installation_path .. '/packages/jdtls/lombok.jar',
     '-jar',
-    installation_path .. '/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar',
+    vim.fn.glob(installation_path .. '/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
     -- eclipse.jdt.ls installation                                           the actual version
 
     '-configuration',
@@ -48,18 +48,15 @@ local config = {
     java = {},
   },
 
-  -- Language server `initializationOptions`
-  -- You need to extend the `bundles` with paths to jar files
-  -- if you want to use additional eclipse.jdt.ls plugins.
-  --
-  -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-  --
-  -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
-    bundles = {},
+    bundles = {
+      vim.fn.glob(installation_path .. '/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar'),
+      vim.fn.glob(installation_path .. '/packages/'),
+    },
   },
 }
 
 -- add spring boot ls bundles
 vim.list_extend(config.init_options.bundles, require('spring_boot').java_extensions())
+vim.list_extend(config.init_options.bundles, vim.split(vim.fn.glob(installation_path .. '/packages/java-test/extension/server/*.jar'), '\n'))
 require('jdtls').start_or_attach(config)
