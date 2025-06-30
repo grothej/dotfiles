@@ -30,6 +30,7 @@ return {
         lua = { 'stylua' },
         go = { 'goimports' },
         bash = { 'shfmt' },
+        java = { 'google-java-format' },
         -- yaml = { 'yamlfmt' },
         markdown = { 'prettier' },
         kotlin = { 'ktlint' },
