@@ -55,7 +55,7 @@ return {
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader>sb', builtin.git_branches, { desc = '[S]earch [B]ranches' })
-      vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = '[S]earch [C]ommit' })
+      vim.keymap.set('n', '<leader>sc', builtin.git_commits, { desc = '[S]earch [C]ommit' })
       vim.keymap.set('n', '<leader>sp', '<cmd>Telescope project<CR>', { desc = '[S]earch [P]rojects' })
 
       -- Slightly advanced example of overriding default behavior and theme
