@@ -191,6 +191,8 @@ return {
       { '<leader>tn', '<cmd>lua require("neotest").run.run()<CR>', desc = '[T]est [n]earest' },
       { '<leader>td', '<cmd>lua require("neotest").run.run({strategy = "dap"})<CR>', desc = '[T]est [d]ebug' },
       { '<leader>ts', '<cmd>lua require("neotest").run.stop<CR>', desc = '[T]est [s]top' },
+      { '<leader>tjn', '<cmd>lua require("neotest").jump.next({ status = "failed" })<CR>', desc = '[T]est [j]ump [n]ext' },
+      { '<leader>tjp', '<cmd>lua require("neotest").jump.prev({ status = "failed" })<CR>', desc = '[T]est [j]ump [p]rev' },
       { '<leader>tf', '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', desc = '[T]est [f]ile' },
       { '<leader>tp', '<cmd>lua require("neotest").run.run(vim.loop.cwd())<CR>', desc = '[T]est [p]roject' },
       { '<leader>to', '<cmd>lua require("neotest").output.open({ enter = true, auto_close = true})<CR>', desc = '[T]est output [o]pen' },
