@@ -167,6 +167,44 @@ return {
       }
     end,
   },
+  -- Testing Config ToDo: move in separate file
+  {
+    'rcasia/neotest-java',
+    ft = 'java',
+    dependencies = {
+      'mfussenegger/nvim-jdtls',
+      'mfussenegger/nvim-dap', -- for the debugger
+      'rcarriga/nvim-dap-ui', -- recommended
+      'theHamsta/nvim-dap-virtual-text', -- recommended
+    },
+  },
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'rcasia/neotest-java',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    keys = {
+      { '<leader>tn', '<cmd>lua require("neotest").run.run()<CR>', desc = '[T]est [n]earest' },
+      { '<leader>td', '<cmd>lua require("neotest").run.run({strategy = "dap"})<CR>', desc = '[T]est [d]ebug' },
+      { '<leader>ts', '<cmd>lua require("neotest").run.stop<CR>', desc = '[T]est [s]top' },
+      { '<leader>tf', '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', desc = '[T]est [f]ile' },
+      { '<leader>tp', '<cmd>lua require("neotest").run.run(vim.loop.cwd())<CR>', desc = '[T]est [p]roject' },
+      { '<leader>to', '<cmd>lua require("neotest").output.open({ enter = true, auto_close = true})<CR>', desc = '[T]est output [o]pen' },
+      { '<leader>ttp', '<cmd>lua require("neotest").output_panel.toggle()<CR>', desc = '[T]est [t]oggle [p]anel' },
+      { '<leader>tts', '<cmd>lua require("neotest").summary.toggle()<CR>', desc = '[T]est [t]oggle [s]ummary' },
+    },
+    config = function()
+      require('neotest').setup {
+        adapters = {
+          require 'neotest-java' {},
+        },
+      }
+    end,
+  },
   {
     'https://gitlab.com/schrieveslaach/sonarlint.nvim',
     ft = {

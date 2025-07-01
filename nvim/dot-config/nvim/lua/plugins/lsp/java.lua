@@ -6,11 +6,6 @@ return {
       'mfussenegger/nvim-dap',
     },
     ft = 'java',
-    keys = {
-      { '<leader>jtc', '<Cmd>lua require("jdtls").test_class()<CR>', desc = '[j]ava [t]est [c]lass' },
-      { '<leader>jtm', '<Cmd>lua require("jdtls").test_nearest_method()<CR>', desc = '[j]ava [t]est [m]ethod' },
-      { '<leader>jd', '<Cmd>JdtUpdateDebugConfigs<CR>', desc = '[j]ava [d]ebug config' },
-    },
   },
   {
     'JavaHello/spring-boot.nvim',
