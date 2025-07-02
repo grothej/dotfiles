@@ -51,7 +51,6 @@ local config = {
   init_options = {
     bundles = {
       vim.fn.glob(installation_path .. '/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar'),
-      vim.fn.glob(installation_path .. '/packages/'),
     },
   },
 }
