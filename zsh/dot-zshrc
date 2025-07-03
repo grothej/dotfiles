@@ -78,7 +78,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #k9s
-export KUBE_EDITOR=nvim
+export K9S_EDITOR=nvim
 # intellij alias to open project based on given path argument
 
 # overwrite agnoster zsh theme 
