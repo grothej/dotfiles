@@ -6,6 +6,9 @@ return {
       'mfussenegger/nvim-dap',
     },
     ft = 'java',
+    keys = {
+      { '<leader>ju', require('jdtls').update_project_config(), desc = '[J]ava [u]pdate config' },
+    },
   },
   {
     'JavaHello/spring-boot.nvim',

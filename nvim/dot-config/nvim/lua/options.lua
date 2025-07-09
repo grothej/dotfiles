@@ -69,3 +69,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 
 vim.opt.visualbell = true
+
+-- spellcheck en
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
