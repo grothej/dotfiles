@@ -7,16 +7,19 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         javascript = { 'eslint_d' },
-        -- java = { 'checkstyle' },
+        java = {},
         typescript = { 'eslint_d' },
         go = { 'golangcilint' },
-        text = { 'vale' },
         markdown = { 'markdownlint' },
         yaml = { 'yamllint' },
         terraform = { 'tflint' },
         dockerfile = { 'hadolint' },
         bash = { 'shellcheck' },
       }
+      -- add cspell for all known languages
+      for ft, _ in pairs(lint.linters_by_ft) do
+        table.insert(lint.linters_by_ft[ft], 'cspell')
+      end
 
       -- lint.linters_by_ft['go'] = nil
 
