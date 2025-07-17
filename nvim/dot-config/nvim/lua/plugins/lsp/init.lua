@@ -186,6 +186,7 @@ return {
       'nvim-lua/plenary.nvim',
       'antoinemadec/FixCursorHold.nvim',
       'nvim-treesitter/nvim-treesitter',
+      { 'fredrikaverpil/neotest-golang', version = '*' },
     },
     keys = {
       { '<leader>tn', '<cmd>lua require("neotest").run.run()<CR>', desc = '[T]est [n]earest' },
@@ -203,6 +204,7 @@ return {
       require('neotest').setup {
         adapters = {
           require 'neotest-java' {},
+          require 'neotest-golang' {},
         },
       }
     end,

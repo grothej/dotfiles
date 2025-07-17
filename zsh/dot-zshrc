@@ -48,8 +48,6 @@ autoload -Uz compinit && compinit
 # Todo.txt 
 alias t='todo.sh'
  
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 # gitlab-ci-local 
 export GCL_NEEDS='true'
 alias gcloc"gitlab-ci-local"
