@@ -187,6 +187,7 @@ return {
       'antoinemadec/FixCursorHold.nvim',
       'nvim-treesitter/nvim-treesitter',
       { 'fredrikaverpil/neotest-golang', version = '*' },
+      'nvim-neotest/neotest-jest',
     },
     keys = {
       { '<leader>tn', '<cmd>lua require("neotest").run.run()<CR>', desc = '[T]est [n]earest' },
@@ -205,6 +206,14 @@ return {
         adapters = {
           require 'neotest-java' {},
           require 'neotest-golang' {},
+          require 'neotest-jest' {
+            jestCommand = 'npm test --',
+            jestConfigFile = 'custom.jest.config.ts',
+            env = { CI = true },
+            cwd = function(path)
+              return vim.fn.getcwd()
+            end,
+          },
         },
       }
     end,

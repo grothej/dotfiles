@@ -17,9 +17,9 @@ return {
         bash = { 'shellcheck' },
       }
       -- add cspell for all known languages
-      for ft, _ in pairs(lint.linters_by_ft) do
-        table.insert(lint.linters_by_ft[ft], 'cspell')
-      end
+      -- for ft, _ in pairs(lint.linters_by_ft) do
+      --   table.insert(lint.linters_by_ft[ft], 'cspell')
+      -- end
 
       -- lint.linters_by_ft['go'] = nil
 

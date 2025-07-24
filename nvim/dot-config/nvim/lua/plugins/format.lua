@@ -34,7 +34,7 @@ return {
         -- yaml = { 'yamlfmt' },
         markdown = { 'prettier' },
         kotlin = { 'ktlint' },
-        -- javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'eslint_d' },
       },
     },
   },
