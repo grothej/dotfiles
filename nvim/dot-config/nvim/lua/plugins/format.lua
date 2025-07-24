@@ -31,7 +31,7 @@ return {
         go = { 'goimports' },
         bash = { 'shfmt' },
         java = { 'google-java-format' },
-        yaml = { 'yamlfmt' },
+        -- yaml = { 'yamlfmt' },
         markdown = { 'prettier' },
         kotlin = { 'ktlint' },
         -- javascript = { 'prettierd', 'prettier', stop_after_first = true },

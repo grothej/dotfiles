@@ -9,6 +9,13 @@ return {
         keys = {
           { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = '[G]it diffview' },
         },
+        config = function()
+          require('diffview').setup {
+            merge_tool = {
+              layout = 'diff3_mixed',
+            },
+          }
+        end,
       },
       'nvim-telescope/telescope.nvim',
     },
