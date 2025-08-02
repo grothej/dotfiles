@@ -137,7 +137,6 @@ return {
           },
         },
       }
-
       -- iterate through lsp's and apply config
       for server_name, config in pairs(language_servers) do
         -- config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
@@ -204,6 +203,7 @@ return {
     config = function()
       require('neotest').setup {
         adapters = {
+          require 'neotest-golang' {},
           require 'neotest-java' {},
           require 'neotest-golang' {},
           require 'neotest-jest' {
