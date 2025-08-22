@@ -1,0 +1,7 @@
+*.swp
+*.DS_Store
+.idea/
+.gitlab-ci-local
+.vim
+node_modules
+.orig

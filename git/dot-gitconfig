@@ -1,0 +1,28 @@
+[alias]
+	blaame = blame -w -C -C -C -M
+	logd = log --oneline --graph --all --decorate
+	commit-tc = !bash ~/scripts/git/commit_with_prefix.sh
+	diffw = diff --color-words='[%[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+	fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -wf 1 | xargs -o git commit --fixup"
+	pushf = push --force-with-lease
+	pbc = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf --scheme=history --layout=reverse| cut -wf 1 | pbcopy"
+[color]
+	ui = true
+[core]
+	excludesfile = ~/.gitignore
+[pull]
+	ff = only
+[rebase]
+	autosquash = true
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
+[merge]
+	conflictstyle = diff3
+	tool = nvimdiff
+[mergetool]
+	prompt = false
+	keepBackup = false
+[lfs]
+	skipSmudge = true
