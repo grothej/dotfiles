@@ -22,7 +22,7 @@ ZSH_THEME="agnoster"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git gradle kubectl zoxide )
+plugins=(git gradle kubectl zoxide zsh-autosuggestions )
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
@@ -112,9 +112,6 @@ compdef _gitlab-ci-local_yargs_completions gitlab-ci-local
 
 # start ssh-agent
 eval "$(ssh-agent -s)" 1>/dev/null
-
-# auto suggestions
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
