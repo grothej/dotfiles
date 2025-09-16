@@ -1,5 +1,5 @@
 # Look
-theme = catppuccin-mocha
+theme = "Catppuccin Frappe"
 mouse-hide-while-typing = true
 font-size = 14
 font-family = "JetBrainsMono Nerd Font Mono"
