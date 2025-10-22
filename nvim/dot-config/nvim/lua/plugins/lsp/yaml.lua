@@ -3,7 +3,7 @@ return {
     'b0o/schemastore.nvim',
     lazy = false,
     config = function()
-      require('lspconfig').yamlls.setup {
+      vim.lsp.config('yamlls', {
         settings = {
           yaml = {
             schemaStore = {
@@ -29,7 +29,8 @@ return {
             },
           },
         },
-      }
+      })
+      vim.lsp.enable 'yamlls'
     end,
   },
   {
