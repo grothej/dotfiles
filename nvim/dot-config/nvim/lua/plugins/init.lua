@@ -54,6 +54,7 @@ return {
         'vim',
         'vimdoc',
         'java',
+        'terraform',
         'go',
         'javascript',
       }

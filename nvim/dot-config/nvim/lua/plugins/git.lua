@@ -26,7 +26,7 @@ return {
       end,
       kind = 'floating',
       log_view = {
-        kind = 'floating',
+        kind = 'tab',
       },
     },
     keys = {
