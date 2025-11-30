@@ -26,3 +26,12 @@
 	keepBackup = false
 [lfs]
 	skipSmudge = true
+[include]
+	path = ~/tools/delta/themes.gitconfig
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	features = arctic-fox
+	navigate = true
