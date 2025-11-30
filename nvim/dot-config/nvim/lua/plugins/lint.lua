@@ -15,6 +15,7 @@ return {
         terraform = { 'tflint' },
         dockerfile = { 'hadolint' },
         bash = { 'shellcheck' },
+        makefile = { 'checkmake' },
       }
       -- add cspell for all known languages
       -- for ft, _ in pairs(lint.linters_by_ft) do
