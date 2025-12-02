@@ -28,6 +28,9 @@ return {
       log_view = {
         kind = 'tab',
       },
+      rebase_editor = {
+        kind = 'tab',
+      },
     },
     keys = {
       { '<leader>gg', '<cmd>Neogit kind=floating<CR>', desc = '[G]it' },
