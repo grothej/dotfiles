@@ -6,6 +6,7 @@
 	fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -wf 1 | xargs -o git commit --fixup"
 	pushf = push --force-with-lease
 	pbc = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf --scheme=history --layout=reverse| cut -wf 1 | pbcopy"
+	fsw = "!git fetch; git switch $(git branch --remote | uniq | sort | fzf --layout=reverse | rev | cut -d'/' -f1 | rev)"
 [color]
 	ui = true
 [core]
