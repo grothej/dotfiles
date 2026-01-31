@@ -36,3 +36,5 @@
 [delta]
 	features = arctic-fox
 	navigate = true
+[include]
+	path = ~/.gitconfig.local
