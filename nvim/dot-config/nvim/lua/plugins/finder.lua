@@ -48,7 +48,9 @@ return {
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>sf', builtin.git_files, { desc = '[S]earch Git [F]iles' })
+      vim.keymap.set('n', '<leader>sgf', function()
+        builtin.git_files { use_git_root = true }
+      end, { desc = '[S]earch [G]it [F]iles' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
@@ -68,9 +70,9 @@ return {
         end
         require('telescope.builtin').live_grep { cwd = cwd }
       end
-      vim.keymap.set('n', '<leader>sg', function()
+      vim.keymap.set('n', '<leader>sgr', function()
         live_grep_git_files()
-      end, { desc = '[S]earch by [G]rep' })
+      end, { desc = '[S]earch by [G][r]ep' })
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
