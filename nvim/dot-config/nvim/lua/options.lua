@@ -71,7 +71,7 @@ vim.opt.smartindent = true
 vim.opt.visualbell = true
 
 -- spellcheck
-vim.opt.spell = true
+-- vim.opt.spell = true
 -- if the language is not automatically downloaded manually copy from:
 -- https://ftp.nluug.nl/vim/runtime/spell/
-vim.opt.spelllang = { 'en_us', 'de' }
+-- vim.opt.spelllang = { 'en_us', 'de' }
