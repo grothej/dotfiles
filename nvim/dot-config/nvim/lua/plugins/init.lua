@@ -20,7 +20,6 @@ return {
         { '<leader>s', group = '[S]earch' },
         { '<leader>g', group = '[G]it' },
         { '<leader>p', group = '[P]rojects' },
-        { '<leader>g', group = '[G]it' },
         { '<leader>gb', group = '[G]it [b]lame' },
         { '<leader>gh', group = '[G]it [h]unk' },
         { '<leader>l', group = '[L]int' },

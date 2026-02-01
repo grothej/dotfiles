@@ -205,7 +205,6 @@ return {
         adapters = {
           require 'neotest-golang' {},
           require 'neotest-java' {},
-          require 'neotest-golang' {},
           require 'neotest-jest' {
             jestCommand = 'npm test --',
             jestConfigFile = 'custom.jest.config.ts',
