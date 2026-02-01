@@ -7,7 +7,7 @@ return {
     },
     ft = 'java',
     keys = {
-      { '<leader>ju', require('jdtls').update_project_config(), desc = '[J]ava [u]pdate config' },
+      { '<leader>ju', function() require('jdtls').update_project_config() end, desc = '[J]ava [u]pdate config' },
     },
   },
   {
