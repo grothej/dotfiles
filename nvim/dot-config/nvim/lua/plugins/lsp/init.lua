@@ -120,7 +120,7 @@ return {
 
       -- configure defaults for all language servers
       vim.lsp.config('*', {
-        root_markers = { '.git' },
+        root_dir = vim.fs.root(0, { '.git' }),
       })
 
       -- configure individual language servers
