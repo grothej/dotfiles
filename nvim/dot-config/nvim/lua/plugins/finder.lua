@@ -60,19 +60,25 @@ return {
       vim.keymap.set('n', '<leader>sc', builtin.git_commits, { desc = '[S]earch [C]ommit' })
       vim.keymap.set('n', '<leader>sp', '<cmd>Telescope project<CR>', { desc = '[S]earch [P]rojects' })
 
-      local function live_grep_git_files()
-        -- find the git root dir
+      local function git_root_cwd()
         local git_result = require('telescope.utils').get_os_command_output { 'git', 'rev-parse', '--show-toplevel' }
         local cwd = require('telescope.utils').buffer_dir()
-        -- is command successfull and reslut is not empty set cwd to git dir
         if git_result and #git_result > 0 and git_result[1] ~= '' then
           cwd = git_result[1]
         end
-        require('telescope.builtin').live_grep { cwd = cwd }
+        return cwd
       end
       vim.keymap.set('n', '<leader>sgr', function()
-        live_grep_git_files()
+        require('telescope.builtin').live_grep { cwd = git_root_cwd() }
       end, { desc = '[S]earch by [G][r]ep' })
+      vim.keymap.set('n', '<leader>sgg', function()
+        require('telescope.builtin').grep_string {
+          cwd = git_root_cwd(),
+          search = '',
+          only_sort_text = true,
+          prompt_title = 'Fuzzy Search Git Files',
+        }
+      end, { desc = '[S]earch [G]it fuzzy [G]rep' })
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
