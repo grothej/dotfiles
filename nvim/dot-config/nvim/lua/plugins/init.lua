@@ -90,20 +90,6 @@ return {
     },
   },
   {
-    'akinsho/toggleterm.nvim',
-    lazy = false,
-    version = '*',
-    opts = {
-      open_mapping = [[<C-t>]],
-      autochdir = true,
-      insert_mappings = false,
-    },
-    keys = {
-      { '<esc>', [[<C-\><C-n>]], mode = 't' },
-      { '<C-h>', [[<C-\><C-n><cmd>wincmd k<CR>]], mode = 't' },
-    },
-  },
-  {
     'chrisgrieser/nvim-origami',
     event = 'VeryLazy',
     opts = {}, -- needed even when using default config
