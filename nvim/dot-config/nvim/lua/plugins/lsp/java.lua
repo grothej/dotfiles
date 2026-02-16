@@ -2,6 +2,7 @@
 return {
   {
     'mfussenegger/nvim-jdtls',
+    enabled = false,
     dependencies = {
       'mfussenegger/nvim-dap',
     },
@@ -12,6 +13,7 @@ return {
   },
   {
     'JavaHello/spring-boot.nvim',
+    enabled = false,
     ft = { 'java', 'yaml', 'jproperties' },
     dependencies = {
       'mfussenegger/nvim-jdtls',
@@ -20,6 +22,7 @@ return {
   },
   {
     'elmcgill/springboot-nvim',
+    enabled = false,
     dependencies = {
       'neovim/nvim-lspconfig',
       'mfussenegger/nvim-jdtls',

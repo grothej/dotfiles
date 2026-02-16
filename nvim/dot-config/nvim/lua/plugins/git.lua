@@ -4,18 +4,12 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       {
-        'sindrets/diffview.nvim',
-        lazy = false,
+        'esmuellert/codediff.nvim',
+        dependencies = { 'MunifTanjim/nui.nvim' },
+        cmd = 'CodeDiff',
         keys = {
-          { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = '[G]it diffview' },
+          { '<leader>gd', '<cmd>CodeDiff<CR>', desc = '[G]it [d]iff' },
         },
-        config = function()
-          require('diffview').setup {
-            merge_tool = {
-              layout = 'diff3_mixed',
-            },
-          }
-        end,
       },
       'nvim-telescope/telescope.nvim',
     },
