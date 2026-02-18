@@ -53,6 +53,7 @@ return {
         'terraform',
         'go',
         'javascript',
+        'helm',
       }
       require('nvim-treesitter').setup()
 

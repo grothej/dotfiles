@@ -4,6 +4,7 @@ vim.g.maplocalleader = ' '
 require 'keymaps'
 require 'options'
 require 'autocommands'
+require 'filetypes'
 
 --- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info

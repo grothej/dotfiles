@@ -136,6 +136,15 @@ return {
             },
           },
         },
+        helm_ls = {
+          settings = {
+            ['helm-ls'] = {
+              yamlls = {
+                path = 'yaml-language-server',
+              },
+            },
+          },
+        },
       }
       -- iterate through lsp's and apply config
       for server_name, config in pairs(language_servers) do
