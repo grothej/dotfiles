@@ -26,7 +26,9 @@ return {
       require('telescope').setup {
         defaults = {
           path_display = { 'filename_first' },
+          hidden = true,
           file_ignore_patterns = {
+            '^.git/',
             '^.gitlab-ci-local/',
             '^.go/',
           },
