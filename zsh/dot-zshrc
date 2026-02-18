@@ -110,7 +110,7 @@ _gitlab-ci-local_yargs_completions()
 compdef _gitlab-ci-local_yargs_completions gitlab-ci-local
 
 # start ssh-agent
-eval "$(ssh-agent -s)" 1>/dev/null
+eval "$(ssh-agent -s)" >/dev/null
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -118,11 +118,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 [ -d "$HOME/.sc-tools" ] && source "$HOME/.sc-tools/dotfiles/env.zsh" #sc-tools-setup
 
-# use bedrock for claude code
-export CLAUDE_CODE_USE_BEDROCK=1
-export AWS_REGION=eu-central-1
-AWS_DEFAULT_REGION=eu-central-1
+# opencode
+export PATH=/home/jgrothe/.opencode/bin:$PATH
 
-source ~/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script
-
-alias jcli='acli jira'
+# Host-specific configuration
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
