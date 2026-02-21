@@ -6,16 +6,6 @@ This file provides guidance to agents when working with code in this repository.
 
 Personal dotfiles repository managed with [GNU Stow](https://www.gnu.org/software/stow/) (>= v2.4.0). Each top-level directory is a stow "package" (bashrc, ghostty, git, k9s, nvim, opencode, tmux, yamlfmt, yamllint, zsh).
 
-## Stow Usage
-
-The `.stowrc` sets `--dotfiles` (translates `dot-` prefixes to `.` in symlinks) and `--verbose 2`. Target is the home directory by default.
-
-```bash
-stow <package>      # create symlinks for a package
-stow -D <package>   # remove symlinks for a package
-stow -R <package>   # restow (remove then recreate)
-```
-
 ## Neovim Config Architecture
 
 The nvim package (`nvim/dot-config/nvim/`) is the most complex config:
