@@ -149,6 +149,22 @@ return {
             },
           },
         },
+        yamlls = {
+          settings = {
+            yaml = {
+              format = {
+                enable = false,
+              },
+              kubernetesCRDStore = {
+                enable = true,
+              },
+              customTags = {
+                '!reference scalar',
+                '!reference sequence',
+              },
+            },
+          },
+        },
       }
       -- iterate through lsp's and apply config
       for server_name, config in pairs(language_servers) do
@@ -174,7 +190,7 @@ return {
         ensure_installed = { 'lua_ls' },
         automatic_enable = {
           -- don't enable the following language servers
-          exclude = { 'jdtls', 'yamlls' },
+          exclude = { 'jdtls' },
         },
       }
     end,
