@@ -7,10 +7,9 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         javascript = { 'eslint_d' },
-        java = {},
         typescript = { 'eslint_d' },
         go = { 'golangcilint' },
-        markdown = { 'markdownlint' },
+        -- markdown = { 'markdownlint' },
         yaml = { 'yamllint' },
         terraform = { 'tflint' },
         dockerfile = { 'hadolint' },

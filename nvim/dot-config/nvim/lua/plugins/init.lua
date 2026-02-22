@@ -89,6 +89,11 @@ return {
     },
   },
   {
+    'qvalentin/helm-ls.nvim',
+    ft = 'helm',
+    opts = {},
+  },
+  {
     'chrisgrieser/nvim-origami',
     event = 'VeryLazy',
     opts = {}, -- needed even when using default config

@@ -1,7 +1,6 @@
 return {
   {
-    dir = '~/programming/neovim-plugins/k8s-schema-helper.nvim/',
-    dev = true,
+    url = 'git@github.com-personal:grothej/k8s-schema-helper.nvim',
     opts = {},
     ft = 'yaml',
   },

@@ -141,6 +141,7 @@ return {
           },
         },
         helm_ls = {
+          filetypes = { 'helm', 'yaml.helm-values' },
           settings = {
             ['helm-ls'] = {
               yamlls = {
