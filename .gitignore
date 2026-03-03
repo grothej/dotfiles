@@ -8,3 +8,4 @@ foo.*
 .vscode/
 .directory/
 .gitconfig.local
+tmux/dot-config/tmux/plugins/
