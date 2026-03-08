@@ -5,11 +5,8 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
-    -- Creates a beautiful debugger UI
-    'rcarriga/nvim-dap-ui',
-
-    -- Required dependency for nvim-dap-ui
-    'nvim-neotest/nvim-nio',
+    -- Lightweight debugger UI
+    'igorlfs/nvim-dap-view',
 
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
@@ -69,14 +66,14 @@ return {
     {
       '<F7>',
       function()
-        require('dapui').toggle()
+        require('dap-view').toggle()
       end,
-      desc = 'Debug: See last session result.',
+      desc = 'Debug: Toggle debugger view',
     },
   },
   config = function()
     local dap = require 'dap'
-    local dapui = require 'dapui'
+    local dap_view = require 'dap-view'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -88,29 +85,13 @@ return {
       handlers = {},
 
       ensure_installed = {
-        'delve',
         'java-debug-adapter',
         'java-test',
       },
     }
 
-    -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
-    dapui.setup {
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-      controls = {
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
-        },
-      },
+    dap_view.setup {
+      auto_toggle = true,
     }
 
     -- Change breakpoint icons
@@ -124,10 +105,6 @@ return {
       local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
       vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
     end
-
-    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- debugger specific configuration
     --
