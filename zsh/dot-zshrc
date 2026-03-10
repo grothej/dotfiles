@@ -23,7 +23,7 @@ ZSH_THEME="agnoster"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git kubectl zoxide zsh-autosuggestions direnv aws )
+plugins=(git kubectl zoxide zsh-autosuggestions direnv aws vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
@@ -67,6 +67,9 @@ export FZF_CTRL_T_OPTS="
   --bind 'ctrl-/:change-preview-window(down|hidden|)'
   --layout=reverse "
 source <(fzf --zsh)
+
+# change cursor mode depending on vi mode
+VI_MODE_SET_CURSOR=true
 
 # respect .gitignore files with fd, ripgrep and silver searcher
 #
