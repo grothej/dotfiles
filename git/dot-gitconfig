@@ -38,3 +38,5 @@
 	navigate = true
 [include]
 	path = ~/.gitconfig.local
+[gpg]
+	format = ssh
